@@ -1,7 +1,8 @@
-//* 1
-const numberOfFilms = +prompt('How many movies have you watched?', '');
+"use strict"
 
-//* 2
+let numberOfFilms = +prompt('How many movies have you watched?', '');
+
+//*
 const personalMovieDB = {
     count: numberOfFilms,
     movies: {},
@@ -9,13 +10,18 @@ const personalMovieDB = {
     genres: [],
     privat: false,
 };
-
-//* 3
-const firstWatchedMovie = prompt('One of the last watched movie?', '');
-const firstMovieRate = +prompt('How would you rate it?', '');
-const secondWatchedMovie = prompt('One of the last watched movie?', '');
-const secondMovieRate = +prompt('How would you rate it?', '');
-
-personalMovieDB.movies[firstWatchedMovie] = firstMovieRate;
-personalMovieDB.movies[secondWatchedMovie] = secondMovieRate;
-console.log(personalMovieDB);
+//*
+for (let i = 0; i < 2; i++) {
+    let watchedMovie = prompt('One of the last watched movie?', '');
+    let rating = +prompt('How would you rate it?', '');
+    if (watchedMovie !== "" && rating !== "" && watchedMovie !== null && rating !== null && watchedMovie.length < 50) {
+        personalMovieDB.movies[watchedMovie] = rating;
+    } else {
+        i--;
+    }
+}
+// console.log(personalMovieDB);
+//*
+alert((personalMovieDB.count < 10) ? "Watched quite a few movies" :
+    (personalMovieDB.count < 30) ? "You're a classic viewer" :
+    (personalMovieDB.count >= 30) ? "You're a movie fan" : "Error");
